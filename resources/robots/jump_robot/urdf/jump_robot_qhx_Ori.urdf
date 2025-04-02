@@ -19,7 +19,7 @@
         iyz="-1.571792289308E-05"
         izz="0.126836649722406" />
     </inertial>
-    <visual name="trunk_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -55,7 +55,7 @@
         iyz="5.94429533538155E-07"
         izz="0.00422659743271191" />
     </inertial>
-    <visual name="arm_left_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -112,7 +112,7 @@
         iyz="9.72152961586076E-07"
         izz="0.00422289414668557" />
     </inertial>
-    <visual name="arm_right_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -169,7 +169,7 @@
         iyz="1.49357926969216E-05"
         izz="0.00265411614795581" />
     </inertial>
-    <visual name="hip_left_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -226,7 +226,7 @@
         iyz="3.30972534771016E-06"
         izz="0.0200095245878174" />
     </inertial>
-    <visual name="thigh_left_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -283,7 +283,7 @@
         iyz="6.29874205032996E-07"
         izz="0.0171561337463444" />
     </inertial>
-    <visual name="calf_left_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -340,7 +340,7 @@
         iyz="1.04672180226572E-07"
         izz="0.000252474733936312" />
     </inertial>
-    <visual name="ankle_left_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -397,7 +397,7 @@
         iyz="4.80973862828783E-05"
         izz="0.000947864307528784" />
     </inertial>
-    <visual name="foot_left_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -411,12 +411,12 @@
           rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
       </material>
     </visual>
-    <collision name="foot_left_col">
+    <collision>
       <origin
-        xyz="0.065 0 0.04"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <box size="0.025 0.1 0.24" />
+        <!-- <box size="0.1500000 0.0750000 0.01000000" /> -->
         <mesh filename="../meshes/foot_left.STL"/>
       </geometry>
     </collision>
@@ -454,7 +454,7 @@
         iyz="-1.49675088110476E-05"
         izz="0.00265407493550081" />
     </inertial>
-    <visual name="hip_right_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -511,7 +511,7 @@
         iyz="-1.16736435452894E-06"
         izz="0.02003601312423" />
     </inertial>
-    <visual name="thigh_right_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -568,7 +568,7 @@
         iyz="-1.02204152230495E-06"
         izz="0.0171504340007012" />
     </inertial>
-    <visual name="calf_right_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -625,7 +625,7 @@
         iyz="-1.04747366225109E-07"
         izz="0.000252474141004131" />
     </inertial>
-    <visual name="ankle_right_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -682,7 +682,7 @@
         iyz="-4.8098195438002E-05"
         izz="0.000947871402094289" />
     </inertial>
-    <visual name="foot_right_visual">
+    <visual>
       <origin
         xyz="0 0 0"
         rpy="0 0 0" />
@@ -696,13 +696,13 @@
           rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
       </material>
     </visual>
-    <collision name="foot_right_col">
+    <collision>
       <origin
-        xyz="0.065 0 0.04"
+        xyz="0 0 0"
         rpy="0 0 0" />
       <geometry>
-        <box size="0.025 0.1 0.24" />
-        <!-- <mesh filename="../meshes/foot_right.STL" /> -->
+        <!-- <box size="0.1500000 0.0750000 0.01000000" /> -->
+        <mesh filename="../meshes/foot_right.STL" />
       </geometry>
     </collision>
   </link>

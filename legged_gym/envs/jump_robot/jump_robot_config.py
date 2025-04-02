@@ -26,19 +26,19 @@ class JumpRobotCfg(LeggedRobotCfg):
         # initPos_quate = trans.as_quat()
         # rot = [initPos_quate[0], initPos_quate[1], initPos_quate[2], initPos_quate[3]]
         default_joint_angles = {  # Target angles [rad] when action = 0.0
-            'hip_x_left': 10.0 * D2R,
+            'hip_x_left': 0.0 * D2R,
             'hip_y_left': 20.0 * D2R, #'hip_left_y': 70.0 * D2R,
             'knee_left': -40.0 * D2R, #'knee_left': -100.0 * D2R,
             'ankle_y_left': 20.0 * D2R, #'ankle_left_y': 46.0 * D2R,
-            'ankle_x_left': -10.0 * D2R,
-            'shoulder_left': 90.0 * D2R,
+            'ankle_x_left': 0.0 * D2R,
+            'shoulder_left': 0.0 * D2R,
 
-            'hip_x_right': 10.0 * D2R,
+            'hip_x_right': 0.0 * D2R,
             'hip_y_right': 20.0 * D2R, #'hip_right_y': 70.0 * D2R,
             'knee_right': -40.0 * D2R, #'knee_right': -100.0 * D2R,
             'ankle_y_right': 20.0 * D2R, #'ankle_right_y': 46.0 * D2R,
-            'ankle_x_right': -10.0 * D2R,
-            'shoulder_right': 90.0 * D2R,
+            'ankle_x_right': 0.0 * D2R,
+            'shoulder_right': 0.0 * D2R,
         }
 
     class control(LeggedRobotCfg.control):
@@ -71,8 +71,9 @@ class JumpRobotCfg(LeggedRobotCfg):
         class scales( LeggedRobotCfg.rewards.scales ):
             termination = -200.
             tracking_ang_vel = 1.0
+            tracking_lin_vel = 2.0
             torques = -5.e-6
-            dof_acc = -2.e-7
+            dof_acc = -2.e-6
             lin_vel_z = 0.01
             feet_air_time = 5.
             dof_pos_limits = -1.
@@ -82,7 +83,10 @@ class JumpRobotCfg(LeggedRobotCfg):
             # qhx
             double_fly = 0.3
             double_no_fly = 0.1
-            footPosture = -8.e-4
+            footPosture = .0
+            footAngVel = -1.e-3
+            armSymmetry = -0.1
+            armPosition = -1.e-3
     
     # class viewer(LeggedRobotCfg.viewer):
         # pos = [3, 0, 1]
@@ -91,7 +95,7 @@ class JumpRobotCfgPPO(LeggedRobotCfgPPO):
     class runner(LeggedRobotCfgPPO.runner):
         run_name = 'jump_robot_training'
         experiment_name = 'jump_robot_experiment'
-        max_iterations = 1000
+        max_iterations = 1500
 
     class algorithm(LeggedRobotCfgPPO.algorithm):
         entropy_coef = 0.02

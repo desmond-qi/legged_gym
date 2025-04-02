@@ -35,7 +35,7 @@ class JumpRobot(LeggedRobot):
             else:
                 self.commands[env_ids, 2] = torch_rand_float(self.command_ranges["ang_vel_yaw"][0], self.command_ranges["ang_vel_yaw"][1], (len(env_ids), 1), device=self.device).squeeze(1)
         else:
-            self.commands[env_ids, 0] = 1.0
+            self.commands[env_ids, 0] = 0.8
             self.commands[env_ids, 1] = 0.0
             self.commands[env_ids, 2] = 0.0
             self.commands[env_ids, 3] = 0.
@@ -54,18 +54,17 @@ class JumpRobot(LeggedRobot):
         return 1.*double_no_contact
     
     def _reward_footPosture(self):
-        # leftFoot_rot_np = self.rigid_rotation[:, 5, :].cpu().numpy()
-        # leftFoot_euler = R.from_quat(leftFoot_rot_np).as_euler('xyz', degrees=False)
-        # rightFoot_rot_np = self.rigid_rotation[:, 10, :].cpu().numpy()
-        # rightFoot_euler = R.from_quat(rightFoot_rot_np).as_euler('zyx', degrees=False)
-        # return torch.sum(torch.abs(torch.from_numpy(leftFoot_euler).to('cuda')[:, 2] + 3.14)) + torch.sum(torch.abs(torch.from_numpy(rightFoot_euler).to('cuda')[:, 2] + 3.14))
-
         trunk_euler = get_euler_xyz(self.rigid_rotation[:, 0, :])
         leftFoot_roll = trunk_euler[0] + self.dof_pos[:, 0] + self.dof_pos[:, 4]
         rightFoot_roll = trunk_euler[0] + self.dof_pos[:, 5] + self.dof_pos[:, 9]
-        # leftFoot_euler = get_euler_xyz(self.rigid_rotation[:, 5, :])
-        # rightFoot_euler = get_euler_xyz(self.rigid_rotation[:, 10, :])
-
-        return torch.sum(torch.abs(leftFoot_roll)) + torch.sum(torch.abs(rightFoot_roll))
+        return torch.abs(leftFoot_roll) + torch.abs(rightFoot_roll)
     
+    def _reward_footAngVel(self):
+        return torch.abs(self.dof_vel[:, 3]) + torch.abs(self.dof_vel[:, 8])
+    
+    def _reward_armSymmetry(self):
+        return torch.abs(self.dof_pos[:, 10] - self.dof_pos[:, 11])
+    
+    def _reward_armPosition(self):
+        return torch.abs(self.dof_pos[:, 10]) + torch.abs(self.dof_pos[:, 11])
 
