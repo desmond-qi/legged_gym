@@ -6,7 +6,7 @@ D2R = np.pi / 180.0
 
 class JumpRobotCfg(LeggedRobotCfg):
     class env(LeggedRobotCfg.env):
-        num_envs = 4096
+        num_envs = 8192
         num_observations = 48  # 
         num_actions = 12
 
@@ -27,16 +27,16 @@ class JumpRobotCfg(LeggedRobotCfg):
         # rot = [initPos_quate[0], initPos_quate[1], initPos_quate[2], initPos_quate[3]]
         default_joint_angles = {  # Target angles [rad] when action = 0.0
             'hip_x_left': 0.0 * D2R,
-            'hip_y_left': 20.0 * D2R, #'hip_left_y': 70.0 * D2R,
+            'hip_y_left': 20.0 * D2R, #'hip_y_left': 70.0 * D2R,
             'knee_left': -40.0 * D2R, #'knee_left': -100.0 * D2R,
-            'ankle_y_left': 20.0 * D2R, #'ankle_left_y': 46.0 * D2R,
+            'ankle_y_left': 20.0 * D2R, #'ankle_y_left': 46.0 * D2R,
             'ankle_x_left': 0.0 * D2R,
             'shoulder_left': 0.0 * D2R,
 
             'hip_x_right': 0.0 * D2R,
-            'hip_y_right': 20.0 * D2R, #'hip_right_y': 70.0 * D2R,
+            'hip_y_right': 20.0 * D2R, #'hip_y_right': 70.0 * D2R,
             'knee_right': -40.0 * D2R, #'knee_right': -100.0 * D2R,
-            'ankle_y_right': 20.0 * D2R, #'ankle_right_y': 46.0 * D2R,
+            'ankle_y_right': 20.0 * D2R, #'ankle_y_right': 46.0 * D2R,
             'ankle_x_right': 0.0 * D2R,
             'shoulder_right': 0.0 * D2R,
         }
@@ -67,26 +67,25 @@ class JumpRobotCfg(LeggedRobotCfg):
         soft_torque_limit = 0.9
         max_contact_force = 800.
         only_positive_rewards = False
-
         class scales( LeggedRobotCfg.rewards.scales ):
             termination = -200.
             tracking_ang_vel = 1.0
-            tracking_lin_vel = 2.0
+            tracking_lin_vel = 1.0
             torques = -5.e-6
             dof_acc = -2.e-6
-            lin_vel_z = 0.01
+            lin_vel_z = 0.1
             feet_air_time = 5.
             dof_pos_limits = -1.
             dof_vel = -0.0
             ang_vel_xy = -0.0
             feet_contact_forces = -0.
-            # qhx
-            double_fly = 0.3
+            #qhx
+            double_fly = 1.0
             double_no_fly = 0.1
             footPosture = .0
-            footAngVel = -1.e-3
-            armSymmetry = -0.1
-            armPosition = -1.e-3
+            # footAngVel = -1.e-5
+            armSymmetry = -1.e-2
+            # armPosition = -1.e-5
     
     # class viewer(LeggedRobotCfg.viewer):
         # pos = [3, 0, 1]

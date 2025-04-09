@@ -35,7 +35,7 @@ class JumpRobot(LeggedRobot):
             else:
                 self.commands[env_ids, 2] = torch_rand_float(self.command_ranges["ang_vel_yaw"][0], self.command_ranges["ang_vel_yaw"][1], (len(env_ids), 1), device=self.device).squeeze(1)
         else:
-            self.commands[env_ids, 0] = 0.8
+            self.commands[env_ids, 0] = 1.5
             self.commands[env_ids, 1] = 0.0
             self.commands[env_ids, 2] = 0.0
             self.commands[env_ids, 3] = 0.
